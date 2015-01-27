@@ -1,10 +1,3 @@
-#Detect 256-color terminal
-if [[ $TERM == "xterm" ]]; then
-	if printf '\e]4;255;?\a' | read -d $'\a' -s -t 1; then
-		export TERM=xterm-256color
-	fi
-fi
-
 eval "$(dircolors $HOME/.dircolors)"
 
 
@@ -25,27 +18,23 @@ antigen bundle vundle
 
 # Autostart
 antigen bundle ssh-agent
-ssh-add .ssh/id_ddwrt .ssh/id_utlrc .ssh/id_stlopenwrt
-antigen bundle tmux
-export ZSH_TMUX_AUTOSTART=false
-export ZSH_TMUX_AUTOQUIT=false
 
 # fish style plugins
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle tarruda/zsh-autosuggestions
-antigen bundle zsh-users/zsh-completions src
+#antigen bundle tarruda/zsh-autosuggestions
+#antigen bundle zsh-users/zsh-completions src
 
 antigen theme robbyrussell
 
 antigen apply
 
 # zsh-autosuggestions configuration
-zle-line-init() {
-	zle autosuggest-start
-}
+#zle-line-init() {
+#	zle autosuggest-start
+#}
 
-zle -N zle-line-init
+#zle -N zle-line-init
 
 
 # zsh-history-substring-search configuration
@@ -55,5 +44,5 @@ bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # zsh-syntax-highlighting configuration
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main pattern cursor)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main line root brackets)
 
